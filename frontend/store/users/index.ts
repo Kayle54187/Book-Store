@@ -6,6 +6,7 @@ type State = {
 
 type loginProps = {
 	email: string;
+	token: string;
 };
 
 type Actions = {
@@ -15,10 +16,14 @@ type Actions = {
 
 const userStore = create<State & Actions>((set) => ({
 	email: undefined,
-	logIn: ({ email }) =>
+	logIn: ({ email, token }) => {
+		if (typeof window !== "undefined") {
+			localStorage.setItem("authorization", token);
+		}
 		set((state) => ({
 			email: email,
-		})),
+		}));
+	},
 	logOut: () => {
 		localStorage.removeItem("authorization");
 		set((state) => ({

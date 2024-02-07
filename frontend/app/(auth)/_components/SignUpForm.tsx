@@ -32,7 +32,10 @@ export default function SignUpForm() {
 	});
 
 	const { mutate: signUp, isPending } = useMutation<
-		TSignUpFormFields,
+		{
+			email: string;
+			token: string;
+		},
 		AxiosError<{ err: string }>,
 		TSignUpFormFields
 	>({
@@ -43,6 +46,7 @@ export default function SignUpForm() {
 			});
 			logIn({
 				email: data.email,
+				token: data.token,
 			});
 			router.push("/admin");
 		},
@@ -75,6 +79,24 @@ export default function SignUpForm() {
 							<FormItem className="my-4">
 								<FormLabel className="text-[#497CBF]">
 									Email
+								</FormLabel>
+								<FormControl>
+									<Input
+										{...field}
+										className="focus-visible:outline-[#497CBF] py-6"
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						name="password"
+						control={form.control}
+						render={({ field }) => (
+							<FormItem className="my-4">
+								<FormLabel className="text-[#497CBF]">
+									Password
 								</FormLabel>
 								<FormControl>
 									<Input
