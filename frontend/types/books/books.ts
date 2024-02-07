@@ -10,6 +10,9 @@ export const BookSchema = z.object({
 	tags: z.string({
 		required_error: "Tags is required",
 	}),
+	points: z.number({
+		required_error: "Points is required",
+	}),
 	image: z.string({
 		required_error: "Image is required",
 	}),

@@ -19,6 +19,7 @@ export default function HomePage() {
 						"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHx8MA%3D%3D"
 					}
 					writer={"Kayle Vermilion"}
+					id="1"
 				/>
 				<BookCard
 					points="100"
@@ -27,6 +28,7 @@ export default function HomePage() {
 						"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHx8MA%3D%3D"
 					}
 					writer={"Kayle Vermilion"}
+					id="2"
 				/>
 				<BookCard
 					points="100"
@@ -35,6 +37,7 @@ export default function HomePage() {
 						"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHx8MA%3D%3D"
 					}
 					writer={"Kayle Vermilion"}
+					id="3"
 				/>
 				<BookCard
 					points="100"
@@ -43,6 +46,7 @@ export default function HomePage() {
 						"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Ym9va3xlbnwwfHwwfHx8MA%3D%3D"
 					}
 					writer={"Kayle Vermilion"}
+					id="4"
 				/>
 			</div>
 		</div>
