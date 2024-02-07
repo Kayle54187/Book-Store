@@ -11,13 +11,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { userStore } from "@/store/users";
 import { BookSchema, BooksFields } from "@/types/books/books";
 import { baseInstance } from "@/utils/axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 export default function AddBook() {
@@ -52,7 +50,7 @@ export default function AddBook() {
 	};
 
 	return (
-		<div className="w-full h-full">
+		<div className="w-full h-full md:w-2/4">
 			<Form {...form}>
 				<form
 					className="h-full flex flex-col w-full"
@@ -65,7 +63,7 @@ export default function AddBook() {
 							<FormItem className="my-4">
 								<FormLabel>Title</FormLabel>
 								<FormControl>
-									<Input {...field} className="py-6" />
+									<Input {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -78,7 +76,7 @@ export default function AddBook() {
 							<FormItem className="my-4">
 								<FormLabel>Writer</FormLabel>
 								<FormControl>
-									<Input {...field} className="py-6" />
+									<Input {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
@@ -91,7 +89,27 @@ export default function AddBook() {
 							<FormItem className="my-4">
 								<FormLabel>Tags</FormLabel>
 								<FormControl>
-									<Input {...field} className="py-6" />
+									<Input {...field} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						name="points"
+						control={form.control}
+						render={({ field }) => (
+							<FormItem className="my-4">
+								<FormLabel>Points</FormLabel>
+								<FormControl>
+									<Input
+										onChange={(e) =>
+											form.setValue(
+												"points",
+												Number(e?.target?.value)
+											)
+										}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>

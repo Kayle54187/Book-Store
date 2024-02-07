@@ -5,7 +5,9 @@ export default function NavBar() {
 		<header className="bg-slate-900 text-white w-full">
 			<div className="m-auto w-11/12 p-4 flex items-center justify-between">
 				<div>
-					<h1 className="text-2xl font-bold">Book Shop</h1>
+					<Link href={"/"} className="text-2xl font-bold">
+						Book Shop
+					</Link>
 				</div>
 				<nav className="flex items-center space-x-4">
 					<ul className="flex items-center">
