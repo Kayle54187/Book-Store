@@ -34,7 +34,7 @@ export default function SignInForm() {
 	const { mutate: signIn, isPending } = useMutation<
 		{
 			email: string;
-			token: string;
+			accessToken: string;
 		},
 		AxiosError<{ message: string }>,
 		TSignInFormFields
@@ -46,8 +46,9 @@ export default function SignInForm() {
 			});
 			logIn({
 				email: data.email,
-				token: data.token,
+				token: data.accessToken,
 			});
+			localStorage.setItem("authorization", data.accessToken);
 			router.push("/");
 		},
 		onError: (error) => {
@@ -58,7 +59,7 @@ export default function SignInForm() {
 			});
 		},
 		mutationFn: (data) =>
-			baseInstance.post("/users/signin", data).then((res) => res.data),
+			baseInstance.post("/auth/login", data).then((res) => res.data),
 	});
 
 	const onSubmit = (data: TSignInFormFields) => {

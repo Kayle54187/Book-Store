@@ -8,6 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
 import { baseInstance } from "@/utils/axios";
 import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
@@ -15,7 +16,7 @@ import Image from "next/image";
 interface BookCardProps {
 	id: string;
 	title: string;
-	points: string;
+	points: number;
 	image: string;
 	writer: string;
 }
@@ -27,15 +28,22 @@ export default function BookCard({
 	image,
 	writer,
 }: BookCardProps) {
-	const { mutate: buyBook } = useMutation<string, string, string>({
+	const { toast } = useToast();
+
+	const { mutate: placeOrder } = useMutation<string, string, string>({
 		onSuccess: (data) => {
-			console.log(data);
+			toast({
+				title: "Placing Order Success",
+			});
 		},
 		onError: (error) => {
-			console.log(error);
+			toast({
+				title: "Placing Order Failed",
+				variant: "destructive",
+			});
 		},
 		mutationFn: (data) =>
-			baseInstance.post(`/buy/book/${id}`, data).then((res) => res.data),
+			baseInstance.post(`/Orders/${id}`, data).then((res) => res.data),
 	});
 
 	return (
@@ -61,7 +69,7 @@ export default function BookCard({
 					<p className="text-[#0B0F40]">{points} Points</p>
 				</div>
 				<div>
-					<Button onClick={() => buyBook(id)}>Buy Book</Button>
+					<Button onClick={() => placeOrder(id)}>Buy Book</Button>
 				</div>
 			</CardContent>
 		</Card>

@@ -6,7 +6,7 @@ export function useGetCurrentUser() {
 	return useQuery<IUser>({
 		queryKey: ["current-user"],
 		queryFn: () =>
-			baseInstance.get("/users/current-user").then((res) => {
+			baseInstance.get("/users/current").then((res) => {
 				return res.data;
 			}),
 	});

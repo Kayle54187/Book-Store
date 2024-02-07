@@ -1,6 +1,7 @@
 export interface IBook {
+	id: string;
 	title: string;
-	points: number;
-	image: string;
+	price: number;
+	coverImage: string;
 	writer: string;
 }

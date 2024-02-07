@@ -34,7 +34,7 @@ export default function SignUpForm() {
 	const { mutate: signUp, isPending } = useMutation<
 		{
 			email: string;
-			token: string;
+			accessToken: string;
 		},
 		AxiosError<{ err: string }>,
 		TSignUpFormFields
@@ -46,9 +46,10 @@ export default function SignUpForm() {
 			});
 			logIn({
 				email: data.email,
-				token: data.token,
+				token: data.accessToken,
 			});
-			router.push("/admin");
+			localStorage.setItem("authorization", data.accessToken);
+			router.push("/");
 		},
 		onError: (error) => {
 			toast({
@@ -58,7 +59,7 @@ export default function SignUpForm() {
 			});
 		},
 		mutationFn: (data) =>
-			baseInstance.post("/users/signup", data).then((res) => res.data),
+			baseInstance.post("/users", data).then((res) => res.data),
 	});
 
 	const onSubmit = (data: TSignUpFormFields) => {
@@ -97,6 +98,42 @@ export default function SignUpForm() {
 							<FormItem className="my-4">
 								<FormLabel className="text-[#497CBF]">
 									Password
+								</FormLabel>
+								<FormControl>
+									<Input
+										{...field}
+										className="focus-visible:outline-[#497CBF] py-6"
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						name="firstName"
+						control={form.control}
+						render={({ field }) => (
+							<FormItem className="my-4">
+								<FormLabel className="text-[#497CBF]">
+									First Name
+								</FormLabel>
+								<FormControl>
+									<Input
+										{...field}
+										className="focus-visible:outline-[#497CBF] py-6"
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						name="lastName"
+						control={form.control}
+						render={({ field }) => (
+							<FormItem className="my-4">
+								<FormLabel className="text-[#497CBF]">
+									Last Name
 								</FormLabel>
 								<FormControl>
 									<Input

@@ -1,21 +1,25 @@
 import { IBook } from "@/types/books";
 import { objectToQueryParams } from "@/utils";
+import { baseInstance } from "@/utils/axios";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 interface IAllBooksParams {
-	q?: string;
+	search?: string;
 }
 
-export function useGetAllBooks({ q }: IAllBooksParams) {
-	const queryParams = objectToQueryParams({ q });
+export function useGetAllBooks({ search }: IAllBooksParams) {
+	const queryParams = objectToQueryParams({ search });
 
-	return useInfiniteQuery<IBook[]>({
+	return useQuery<IBook[]>({
 		queryKey: ["books", queryParams],
 		queryFn: () =>
-			fetch(`/api/books${queryParams}`).then((res) => res.json()),
-		initialPageParam: 0,
-		getNextPageParam: (lastPage, allPages) => {
-			return lastPage.length === 10 ? allPages.length : false;
-		},
+			baseInstance.get(`/Books?${queryParams}`).then((res) => res.data),
+	});
+}
+
+export function useGetBookById(id: string) {
+	return useQuery<IBook>({
+		queryKey: ["book-by-id"],
+		queryFn: () => baseInstance.get(`/Books/${id}`).then((res) => res.data),
 	});
 }

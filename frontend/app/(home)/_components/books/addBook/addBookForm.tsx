@@ -42,7 +42,7 @@ export default function AddBook() {
 			});
 		},
 		mutationFn: (data) =>
-			baseInstance.post("/users/signin", data).then((res) => res.data),
+			baseInstance.post("/Books", data).then((res) => res.data),
 	});
 
 	const onSubmit = (data: BooksFields) => {
@@ -89,14 +89,22 @@ export default function AddBook() {
 							<FormItem className="my-4">
 								<FormLabel>Tags</FormLabel>
 								<FormControl>
-									<Input {...field} />
+									<Input
+										onChange={(e) =>
+											form.setValue(
+												"tags",
+												e.target.value.split(",")
+											)
+										}
+										placeholder="Separate tags with comma"
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 					<FormField
-						name="points"
+						name="price"
 						control={form.control}
 						render={({ field }) => (
 							<FormItem className="my-4">
@@ -105,7 +113,7 @@ export default function AddBook() {
 									<Input
 										onChange={(e) =>
 											form.setValue(
-												"points",
+												"price",
 												Number(e?.target?.value)
 											)
 										}
@@ -116,7 +124,7 @@ export default function AddBook() {
 						)}
 					/>
 					<FormField
-						name="image"
+						name="coverImage"
 						control={form.control}
 						render={({ field }) => (
 							<FormItem className="my-4">

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 export default function NavBar() {
-	const email = userStore((state) => state.email);
+	const token = userStore((state) => state.email);
 	const router = useRouter();
 
 	return (
@@ -24,7 +24,7 @@ export default function NavBar() {
 						<Link href="/add-book">Add Book</Link>
 					</ul>
 					<ul className="flex items-center">
-						{!email && (
+						{!token && (
 							<Button
 								onClick={() => router.push("/sign-in")}
 								className="bg-blue-900"
@@ -32,7 +32,7 @@ export default function NavBar() {
 								<LogIn />
 							</Button>
 						)}
-						{email && <ProfileModal />}
+						{token && <ProfileModal />}
 					</ul>
 				</nav>
 			</div>
