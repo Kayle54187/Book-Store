@@ -64,6 +64,7 @@ export default function HomePage() {
 							writer={book.writer}
 							id={book.id}
 							key={book.id}
+							tags={book.tags}
 						/>
 					))}
 				{!data && <p>Loading Books</p>}

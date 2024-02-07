@@ -19,6 +19,7 @@ interface BookCardProps {
 	points: number;
 	image: string;
 	writer: string;
+	tags: string[];
 }
 
 export default function BookCard({
@@ -27,6 +28,7 @@ export default function BookCard({
 	points,
 	image,
 	writer,
+	tags,
 }: BookCardProps) {
 	const { toast } = useToast();
 
@@ -47,7 +49,7 @@ export default function BookCard({
 	});
 
 	return (
-		<Card className="w-full h-[500px] p-2">
+		<Card className="w-full h-[600px] p-2">
 			<CardContent className="p-2 space-y-2">
 				<h1 className="text-[#0B0F40] font-bold text-2xl">
 					{title}{" "}
@@ -67,6 +69,14 @@ export default function BookCard({
 				<div>
 					Required Points:
 					<p className="text-[#0B0F40]">{points} Points</p>
+				</div>
+				<div>
+					Tags:
+					{tags.map((tag, index) => (
+						<span key={index} className="m-2">
+							{tag}
+						</span>
+					))}
 				</div>
 				<div>
 					<Button onClick={() => placeOrder(id)}>Buy Book</Button>

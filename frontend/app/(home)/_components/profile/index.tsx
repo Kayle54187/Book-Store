@@ -10,9 +10,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserIcon } from "lucide-react";
 import OrderItemCard from "./OrderItem";
 import { useGetAllOrders } from "@/services/orders";
+import { useEffect } from "react";
 
 export default function ProfileModal() {
-	const { data } = useGetAllOrders();
+	const { data, refetch } = useGetAllOrders();
+
+	useEffect(() => {
+		refetch();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<div>

@@ -4,4 +4,5 @@ export interface IBook {
 	price: number;
 	coverImage: string;
 	writer: string;
+	tags: string[];
 }
