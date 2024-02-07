@@ -10,15 +10,11 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserIcon } from "lucide-react";
 import OrderItemCard from "./OrderItem";
 import { useGetAllOrders } from "@/services/orders";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function ProfileModal() {
 	const { data, refetch } = useGetAllOrders();
-
-	useEffect(() => {
-		refetch();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	return (
 		<div>
@@ -39,13 +35,13 @@ export default function ProfileModal() {
 							<ScrollArea className="h-[400px]">
 								{data
 									?.filter(
-										(order) => order.status != "CANCELLED"
+										(order) => order.status !== "CANCELLED"
 									)
 									.map((book, index) => (
 										<OrderItemCard
 											orderId={book.id}
 											bookId={book.bookId}
-											key={book.id}
+											key={book.status}
 										/>
 									))}
 							</ScrollArea>
