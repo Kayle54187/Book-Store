@@ -31,8 +31,15 @@ export class BookController {
   @ApiBearerAuth('access-token')
   @UseGuards(JwtAuthGuard)
   @ApiQuery({ name: 'search', required: false })
-  findAll(@Request() req, @Query('search') search?: string) {
-    return this.BookService.findAll(search);
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  findAll(
+    @Request() req,
+    @Query('search') search?: string,
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ) {
+    return this.BookService.findAll({ page, limit }, search);
   }
 
   @Get(':id')

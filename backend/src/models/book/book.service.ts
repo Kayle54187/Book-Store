@@ -15,7 +15,10 @@ export class BookService {
     return res;
   }
 
-  async findAll(search?: string) {
+  async findAll(
+    paginationOptions: { page?: number; limit?: number },
+    search?: string,
+  ) {
     const where = {};
 
     if (search) {
@@ -40,8 +43,14 @@ export class BookService {
       ];
     }
 
+    const { page = 1, limit = 10 } = paginationOptions || {};
+
+    const skip = (page - 1) * limit;
+
     return await this.prismaService.book.findMany({
       where,
+      skip,
+      take: parseInt(limit.toString()),
     });
   }
 
