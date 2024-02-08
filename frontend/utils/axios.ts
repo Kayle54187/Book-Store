@@ -34,7 +34,7 @@ function baseRequestErrorResponseInterceptor(error: AxiosError) {
 		logOut();
 		if (!url?.includes("users/signin")) {
 			localStorage.removeItem("authorization");
-			// window.location.href = "/sign-in";
+			window.location.href = "/sign-in";
 		}
 	}
 	return Promise.reject(error);
