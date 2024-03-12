@@ -28,7 +28,7 @@ export class OrderController {
   @ApiBearerAuth('access-token')
   @UseGuards(JwtAuthGuard)
   @ApiQuery({ name: 'search', required: false })
-  findAll(@Request() req, @Query('search') search?: string){
+  findAll(@Request() req, @Query('search') search?: string) {
     return this.OrderService.findAll(req.user.id, search);
   }
 

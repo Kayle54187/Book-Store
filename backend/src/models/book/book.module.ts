@@ -16,11 +16,6 @@ import { HttpModule } from '@nestjs/axios';
       }),
     }),
   ],
-  providers: [
-    BookService,
-    PrismaService,
-    JwtService,
-    ConfigService
-  ],
+  providers: [BookService, PrismaService, JwtService, ConfigService],
 })
 export class BookModule {}

@@ -9,8 +9,7 @@ describe('AuthController Unit Tests', () => {
   beforeAll(async () => {
     const ApiServiceProvider = {
       provide: AuthService,
-      useFactory: () => ({
-      }),
+      useFactory: () => ({}),
     };
 
     const module: TestingModule = await Test.createTestingModule({

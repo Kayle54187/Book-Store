@@ -16,11 +16,6 @@ import { HttpModule } from '@nestjs/axios';
       }),
     }),
   ],
-  providers: [
-    UserService,
-    PrismaService,
-    JwtService,
-    ConfigService,
-  ],
+  providers: [UserService, PrismaService, JwtService, ConfigService],
 })
 export class UserModule {}

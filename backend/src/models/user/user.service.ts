@@ -7,9 +7,7 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Injectable()
 export class UserService {
-  constructor(
-    private readonly prismaService: PrismaService,
-  ) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
   async create(createUserDto: CreateUserDto, req: any) {
     const duplicate = await this.prismaService.user.findFirst({
@@ -80,7 +78,7 @@ export class UserService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const user =  await this.findOne(id);
+    const user = await this.findOne(id);
 
     const duplicate = await this.prismaService.user.findFirst({
       where: {
@@ -113,7 +111,6 @@ export class UserService {
     changePasswordDto: ChangePasswordDto,
     req: any,
   ) {
-
     if (
       req.user.id === req.params.id &&
       (!changePasswordDto.oldPassword || changePasswordDto.oldPassword === '')
